@@ -1,0 +1,18 @@
+#heading {
+    -fx-font-size: 6em;
+    -fx-font-family: "Arial Black";
+}
+
+#searchInput {
+    -fx-font-size: 4em;
+}
+
+#searchButton {
+    -fx-font-size: 4em;
+    -fx-font-family: "Agency FB";
+    -fx-background-color: lightgray;
+}
+
+#searchButton:hover {
+    -fx-background-color: gray;
+}
