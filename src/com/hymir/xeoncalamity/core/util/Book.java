@@ -25,6 +25,7 @@ public class Book {
 
     Book(String title, String author, int pageCount, String ISBN, boolean checkedOut, Date releaseDate) {
         this.setTitle(title);
+        this.setAuthor(author);
         this.setPageCount(pageCount);
         this.setReleaseDate(releaseDate);
         this.setISBN(ISBN);

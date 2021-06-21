@@ -1,23 +1,23 @@
-package com.hymir.xeoncalamity.core.util;
+package com.hymir.xeoncalamity.core.windows;
 
+import com.hymir.xeoncalamity.core.util.Library;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class LibraryCatalogue extends Application {
 
+    private TableView table = new TableView();
+    private Library library = new Library();
+
     public LibraryCatalogue() {
 
     }
-
-    private TableView table = new TableView();
 
     @Override
     public void start(Stage stage) {
@@ -34,7 +34,10 @@ public class LibraryCatalogue extends Application {
         TextField searchInput = new TextField();
 
         Button searchButton = new Button("Search");
-        searchButton.setOnAction(e -> this.searchEvent(searchInput.getCharacters().toString()));
+        searchButton.setOnAction(e -> this.library.searchEvent(searchInput.getCharacters().toString()));
+
+        Button createBookButton = new Button("Create Book");
+        createBookButton.setOnAction(e -> Popup.display());
 
         final Label label = new Label("Books");
 
@@ -55,6 +58,7 @@ public class LibraryCatalogue extends Application {
         root.add(heading, 0, 0, 1, 1);
         root.add(searchInput, 0, 1, 1, 1);
         root.add(searchButton, 1, 1, 1, 1);
+        root.add(createBookButton, 1, 2, 1, 1);
         root.add(vbox, 0, 2, 1, 1);
 
         Scene scene = new Scene(root, 1280, 720);
@@ -66,14 +70,6 @@ public class LibraryCatalogue extends Application {
 
         stage.setScene(scene);
         stage.show();
-    }
-
-    private void searchEvent(String searchTerm) {
-
-    }
-
-    private void addBook(Book newBook) {
-
     }
 
     public static void main(String[] args) {
