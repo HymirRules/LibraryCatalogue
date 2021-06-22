@@ -1,18 +1,54 @@
 package com.hymir.xeoncalamity.core.util;
 
-import java.util.Scanner;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.FileWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.Date;
+import java.util.List;
 
 public class Library {
+
+    private List<Book> books;
 
     public Library() {
 
     }
 
-    public void searchEvent(String searchTerm) {
+    public void loadBooks() {
+        try {
+            Gson gson = new Gson();
 
+            Reader reader = Files.newBufferedReader(Paths.get("books.json"));
+
+            this.books = new Gson().fromJson(reader, new TypeToken<List<Book>>() {}.getType());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addBook() {
-        
+    public void searchEvent(String searchTerm) {
+        try {
+
+            Writer writer = new FileWriter("com/hymir/xeoncalamity/data/library/books.json");
+
+            new Gson().toJson(books, writer);
+
+            writer.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void addBook(String title, String author, int pageCount, String ISBN, Date releaseDate, boolean checkedOut) {
+        Book book = new Book(title, author, pageCount, ISBN, releaseDate, checkedOut);
+        Gson gson = new Gson();
+        gson.toJson(book);
     }
 }

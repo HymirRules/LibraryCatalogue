@@ -1,19 +1,18 @@
 package com.hymir.xeoncalamity.core.windows;
 
 import com.hymir.xeoncalamity.core.util.Library;
+import com.hymir.xeoncalamity.core.util.windowbuilder.WindowBuilder;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class LibraryCatalogue extends Application {
 
-    private TableView table = new TableView();
-    private Library library = new Library();
+    private final Library library = new Library();
 
     public LibraryCatalogue() {
 
@@ -39,27 +38,15 @@ public class LibraryCatalogue extends Application {
         Button createBookButton = new Button("Create Book");
         createBookButton.setOnAction(e -> Popup.display());
 
-        final Label label = new Label("Books");
-
-        TableColumn bookTitleCol = new TableColumn("Title");
-        TableColumn authorCol = new TableColumn("Author");
-        TableColumn pageCountCol = new TableColumn("Page Count");
-        TableColumn isbnCol = new TableColumn("ISBN");
-        TableColumn releaseDateCol = new TableColumn("Release Date");
-        TableColumn checkedOutCol = new TableColumn("Checked Out");
-
-        table.getColumns().addAll(bookTitleCol, authorCol, pageCountCol, isbnCol, releaseDateCol, checkedOutCol);
-
-        final VBox vbox = new VBox();
-        vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
+        Button closeButton = new Button("Close");
+        closeButton.setOnAction(e -> stage.close());
 
         root.add(heading, 0, 0, 1, 1);
+        root.add(closeButton, 1, 0, 1, 1);
         root.add(searchInput, 0, 1, 1, 1);
         root.add(searchButton, 1, 1, 1, 1);
         root.add(createBookButton, 1, 2, 1, 1);
-        root.add(vbox, 0, 2, 1, 1);
+        root.add(WindowBuilder.table("Books", new String[]{"Title", "Author", "Page Count", "ISBN", "Release Date", "Checked Out"}), 0, 2, 1, 1);
 
         Scene scene = new Scene(root, 1280, 720);
 

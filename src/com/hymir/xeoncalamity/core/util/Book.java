@@ -6,6 +6,7 @@ public class Book {
     private String title;
     private String author;
     private int pageCount;
+    //private String libraryIdentifier;
     private String ISBN;
     private Date releaseDate;
     private boolean checkedOut;
@@ -23,7 +24,7 @@ public class Book {
 //        this.setCheckedOut(false);
 //    }
 
-    Book(String title, String author, int pageCount, String ISBN, boolean checkedOut, Date releaseDate) {
+    public Book(String title, String author, int pageCount, String ISBN, Date releaseDate, boolean checkedOut) {
         this.setTitle(title);
         this.setAuthor(author);
         this.setPageCount(pageCount);
