@@ -1,6 +1,7 @@
 package com.hymir.xeoncalamity.core.windows;
 
 import com.hymir.xeoncalamity.core.util.Book;
+import com.hymir.xeoncalamity.core.util.Library;
 import com.hymir.xeoncalamity.core.util.windowbuilder.DataEntry;
 import com.hymir.xeoncalamity.core.util.windowbuilder.InputDataCategory;
 import com.hymir.xeoncalamity.core.util.windowbuilder.WindowBuilder;
@@ -11,10 +12,15 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
+
 public class Popup {
 
 
-    public static void display()
+    public static void display(Library library)
     {
         Stage popupwindow=new Stage();
 
@@ -55,8 +61,13 @@ public class Popup {
         createButton.setOnAction(e -> {
             try {
                 Integer count = Integer.parseInt(pageCount.getTextField().getText());
+                LocalDate localDate = releaseDate.getDatePicker().getValue();
+                Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
+                Date date = Date.from(instant);
                 Book book = new Book(bookTitle.getTextField().getText(), author.getTextField().getText(), count,
-                        ISBN.getTextField().getText(), releaseDate.getDatePicker(), checkedOut.getCheckBox().selectedProperty());
+                        ISBN.getTextField().getText(), date, checkedOut.getCheckBox().isSelected());
+                library.addBook(book);
+                popupwindow.close();
             } catch (Exception exception) {
                 exception.printStackTrace();
             }
@@ -66,11 +77,6 @@ public class Popup {
 
 
         root.add(heading, 1, 1, 1, 1);
-
-
-
-
-
 
         root.add(cancelButton, 1, 10, 1, 1);
         root.add(createButton, 2, 10, 1, 1);

@@ -36,7 +36,10 @@ public class LibraryCatalogue extends Application {
         searchButton.setOnAction(e -> this.library.searchEvent(searchInput.getCharacters().toString()));
 
         Button createBookButton = new Button("Create Book");
-        createBookButton.setOnAction(e -> Popup.display());
+        createBookButton.setOnAction(e -> Popup.display(library));
+
+        Button refreshButton = new Button("Refresh List");
+        refreshButton.setOnAction(e -> );
 
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> stage.close());

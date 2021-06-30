@@ -8,15 +8,20 @@ import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class Library {
 
-    private List<Book> books;
+    private List<Book> books = new ArrayList<>();
 
     public Library() {
 
+    }
+
+    public void addBook(Book book) {
+        this.books.add(book);
     }
 
     public void loadBooks() {
@@ -46,7 +51,7 @@ public class Library {
         }
     }
 
-    public void addBook(String title, String author, int pageCount, String ISBN, Date releaseDate, boolean checkedOut) {
+    public void saveBook(String title, String author, int pageCount, String ISBN, Date releaseDate, boolean checkedOut) {
         Book book = new Book(title, author, pageCount, ISBN, releaseDate, checkedOut);
         Gson gson = new Gson();
         gson.toJson(book);
