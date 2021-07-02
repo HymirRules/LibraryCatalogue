@@ -2,19 +2,20 @@ package com.hymir.xeoncalamity.core.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import javafx.beans.InvalidationListener;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 
 import java.io.FileWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 public class Library {
 
-    private List<Book> books = new ArrayList<>();
+    private List<Book> books = new ArrayList<Book>();
 
     public Library() {
 
@@ -40,7 +41,7 @@ public class Library {
     public void searchEvent(String searchTerm) {
         try {
 
-            Writer writer = new FileWriter("com/hymir/xeoncalamity/data/library/books.json");
+            Writer writer = new FileWriter("src/com/hymir/xeoncalamity/data/library/books.json");
 
             new Gson().toJson(books, writer);
 

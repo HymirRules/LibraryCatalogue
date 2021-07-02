@@ -1,12 +1,14 @@
 package com.hymir.xeoncalamity.core.windows;
 
 import com.hymir.xeoncalamity.core.util.Library;
+import com.hymir.xeoncalamity.core.util.windowbuilder.Table;
 import com.hymir.xeoncalamity.core.util.windowbuilder.WindowBuilder;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -32,6 +34,8 @@ public class LibraryCatalogue extends Application {
 
         TextField searchInput = new TextField();
 
+        Table table = new Table("Books", new String[]{"Title", "Author", "Page Count", "ISBN", "Release Date", "Checked Out"});
+
         Button searchButton = new Button("Search");
         searchButton.setOnAction(e -> this.library.searchEvent(searchInput.getCharacters().toString()));
 
@@ -39,7 +43,7 @@ public class LibraryCatalogue extends Application {
         createBookButton.setOnAction(e -> Popup.display(library));
 
         Button refreshButton = new Button("Refresh List");
-        refreshButton.setOnAction(e -> );
+        refreshButton.setOnAction(e -> table.getTable().refresh());
 
         Button closeButton = new Button("Close");
         closeButton.setOnAction(e -> stage.close());
@@ -49,7 +53,7 @@ public class LibraryCatalogue extends Application {
         root.add(searchInput, 0, 1, 1, 1);
         root.add(searchButton, 1, 1, 1, 1);
         root.add(createBookButton, 1, 2, 1, 1);
-        root.add(WindowBuilder.table("Books", new String[]{"Title", "Author", "Page Count", "ISBN", "Release Date", "Checked Out"}), 0, 2, 1, 1);
+        root.add(table.getElement(), 0, 2, 1, 1);
 
         Scene scene = new Scene(root, 1280, 720);
 

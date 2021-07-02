@@ -41,27 +41,21 @@ public class DataEntry {
         root.add(label, 1, 1, 1, 1);
 
         switch (inputDataCategory) {
-            case TEXT_DATA_CATEGORY -> {
-
+            case TEXT_DATA_CATEGORY:
                 textField = new TextField();
 
                 root.add(textField, 2, 1, 1, 1);
-
-            }
-            case DATE_DATA_CATEGORY -> {
-
+                break;
+            case DATE_DATA_CATEGORY:
                 datePicker = new DatePicker();
 
                 root.add(datePicker,2,1,1,1);
 
-            }
-            case BOOLEAN_DATA_CATEGORY -> {
-
+                break;
+            case BOOLEAN_DATA_CATEGORY:
                 checkBox = new CheckBox();
 
                 root.add(checkBox, 2, 1, 1, 1);
-
-            }
         }
 
         return root;
