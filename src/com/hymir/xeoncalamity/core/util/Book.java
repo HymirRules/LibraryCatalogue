@@ -1,12 +1,19 @@
 package com.hymir.xeoncalamity.core.util;
 
+import com.hymir.xeoncalamity.core.windows.LibraryCatalogue;
+
 import java.util.Date;
+
+/**
+ * @author Edward Price
+ * @version 1
+ */
 
 public class Book {
     private String title;
     private String author;
     private int pageCount;
-    //private String libraryIdentifier;
+    private int libraryIdentifier;
     private String ISBN;
     private Date releaseDate;
     private boolean checkedOut;
@@ -17,12 +24,15 @@ public class Book {
      */
     private final Date tenDigitISBN = new Date(1167609600000L);
 
-//    Book() {
-//        this.setTitle("NO_TITLE");
-//        this.setPageCount(0);
-//        this.setISBN("NO_ISBN_AVAILABLE");
-//        this.setCheckedOut(false);
-//    }
+    /**
+     * Constructor for the Book class
+     * @param title title for the book
+     * @param author author of the book
+     * @param pageCount number of pages in the book
+     * @param ISBN the standard identifying number of the book
+     * @param releaseDate date that the book was released
+     * @param checkedOut whether or not the book has been checked out
+     */
 
     public Book(String title, String author, int pageCount, String ISBN, Date releaseDate, boolean checkedOut) {
         this.setTitle(title);
@@ -31,11 +41,25 @@ public class Book {
         this.setReleaseDate(releaseDate);
         this.setISBN(ISBN);
         this.setCheckedOut(checkedOut);
+
+        Library library = LibraryCatalogue.getLibrary();
+        this.setLibraryIdentifier(library.getCurrentLibraryIdentifier());
+
     }
+
+    /**
+     * sets the title of the book object
+     * @param title
+     */
 
     public void setTitle(String title) {
         this.title = title;
     }
+
+    /**
+     * sets the author of the book object
+     * @param author
+     */
 
     public void setAuthor(String author) {
         this.author = author;
@@ -77,11 +101,103 @@ public class Book {
 
     }
 
+    /**
+     * sets the release date for the book object
+     * @param releaseDate
+     */
+
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
 
+    /**
+     * sets whether the book has been checked out
+     * @param checkedOut
+     */
+
     public void setCheckedOut(boolean checkedOut) {
         this.checkedOut = checkedOut;
     }
+
+    /**
+     * sets the library identifier of the book
+     * @param libraryIdentifier
+     */
+
+    public void setLibraryIdentifier(int libraryIdentifier) {
+        this.libraryIdentifier = libraryIdentifier;
+    }
+
+    /**
+     * returns the release date for the book object
+     * @return
+     */
+
+    public Date getReleaseDate() {
+        return releaseDate;
+    }
+
+    /**
+     * returns the value of the tenDigitISBN constant
+     * @return
+     */
+
+    public Date getTenDigitISBN() {
+        return tenDigitISBN;
+    }
+
+    /**
+     * returns the library identifier of the book
+     * @return
+     */
+
+    public int getLibraryIdentifier() {
+        return libraryIdentifier;
+    }
+
+    /**
+     * returns the page count of the book object
+     * @return
+     */
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    /**
+     * returns the author of the book object
+     * @return
+     */
+
+    public String getAuthor() {
+        return author;
+    }
+
+    /**
+     * returns the ISBN of the book object
+     * @return
+     */
+
+    public String getISBN() {
+        return ISBN;
+    }
+
+    /**
+     * returns the title of the book object
+     * @return
+     */
+
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * returns the boolean of whether the book has been checked out
+     * @return
+     */
+
+    public boolean isCheckedOut() {
+        return checkedOut;
+    }
 }
+
